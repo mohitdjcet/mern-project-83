@@ -1,8 +1,12 @@
+import Footer from "./Footer";
+import Header from "./Header";
+
 function App() {
-  const age = 29
   return (
     <>
-      <h1 class="header">Hello React {1 + 1}</h1>
+    <Header />
+    <h1>App Comp</h1>
+    <Footer />
     </>
   );
 }
