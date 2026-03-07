@@ -1,10 +1,13 @@
 function App() {
-  const age = 29
+  const fruits = [];
   return (
-    <>
-      <h1 class="header">Hello React {1 + 1}</h1>
-    </>
+    <div>
+      <ul>
+        {loading && (
+          fruits.map((fruit, index) => <li key={fruit.id}>{fruit.name}</li>)
+        )}
+      </ul>
+    </div>
   );
 }
-
 export default App;
