@@ -1,29 +1,36 @@
-// import { useState } from "react";
-import { useRef } from "react";
+import { useState, useEffect, use } from "react";
 
-function App() {
-  // const [name, setName] = useState("Mohit");
-  
-  const inputRef = useRef(null);
+function App(){
+  const [count, setCount] = useState(0);
 
-  // const handleSubmit = (e)=>{
-  //   e.preventDefault();
-  //   console.log("Name",name);
-  // }
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    console.log("Name", inputRef.current.value);
-  }
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        // value={name}
-        // onChange={(e) => setName(e.target.value)}
-        ref = {inputRef}
-      />
-      <button type="submit">Submit</button>
-    </form>
-  );
+  //WillUnmount
+  // useEffect(()=>{
+  //   console.log("App component mounted");
+  //   return ()=>{
+  //     console.log("App component unmounted");
+  //   }
+  // },[]);
+  // useEffect(()=>{
+  //   console.log("App component change");
+  // },[]);
+
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      console.log("Timer tick");
+    },1000);
+    return ()=>{
+      clearInterval(timer);
+      console.log("Timer cleared");
+    }
+  },[]);
+
+  return(
+    <div>
+      <h1>Hello</h1>
+      <p>Count: {count}</p>
+      <button onClick={()=>setCount(count+1)}>Increment</button>
+    </div>
+  )
 }
+
 export default App;
