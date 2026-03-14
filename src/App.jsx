@@ -1,36 +1,14 @@
-import { useState, useEffect, use } from "react";
+import { useContext } from "react"
+import UserContext from "./UserContext"
 
 function App(){
-  const [count, setCount] = useState(0);
-
-  //WillUnmount
-  // useEffect(()=>{
-  //   console.log("App component mounted");
-  //   return ()=>{
-  //     console.log("App component unmounted");
-  //   }
-  // },[]);
-  // useEffect(()=>{
-  //   console.log("App component change");
-  // },[]);
-
-  useEffect(()=>{
-    const timer = setInterval(()=>{
-      console.log("Timer tick");
-    },1000);
-    return ()=>{
-      clearInterval(timer);
-      console.log("Timer cleared");
-    }
-  },[]);
-
+  const {user, isLogin, setIsLogin} = useContext(UserContext);
   return(
     <div>
-      <h1>Hello</h1>
-      <p>Count: {count}</p>
-      <button onClick={()=>setCount(count+1)}>Increment</button>
+      <h1>Welcome {user}</h1>
+      <button onClick={()=> setIsLogin(!isLogin)}>{isLogin ? "Logout": "Login"}</button>
     </div>
   )
 }
 
-export default App;
+export default App
