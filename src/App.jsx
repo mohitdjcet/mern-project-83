@@ -1,9 +1,15 @@
+import "./App.css"
+import Button from "./Button";
+
 function App() {
-  const age = 29
+  const isActive = false;
   return (
+    // <div style={{color: isActive ? "green": "red"}}>
     <>
-      <h1 class="header">Hello React {1 + 1}</h1>
-    </>
+      <h1 className="text-8xl font-bold underline">Mohit Kumar</h1>
+      <Button />
+      </>
+    // </div>
   );
 }
 
