@@ -1,8 +1,16 @@
+import { Link, Outlet } from "react-router";
+
 function App() {
-  const age = 29
   return (
     <>
-      <h1 class="header">Hello React {1 + 1}</h1>
+      <h1>Hello React Router</h1>
+      <nav style={{ display: "flex", gap: "12px" }}>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/users">Users</Link>
+      </nav>
+      <hr />
+      <Outlet />
     </>
   );
 }
