@@ -3,11 +3,10 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router'
 import Home from "./pages/Home.jsx"
-import About from "./pages/About.jsx"
-import Users from './pages/Users.jsx'
 import Products from './pages/Products.jsx'
 import Login from './pages/Login.jsx'
-import NotFound from './pages/NotFound.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import ProtectedRoute from './comp/ProtectedRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,11 +14,16 @@ const router = createBrowserRouter([
     element:<App />,// "/"
     children:[
       {index:true, element:<Home />}, // "/"
-      {path:"about", element:<Navigate to = "/" replace />},
-      {path:"users/:id", element:<Users />},
+      {path:"products", element:<Products />},
       {path:"login", element:<Login />},
-      {path:"products/:productId", element:<Products />},
-      {path:"*", element:<NotFound/>}
+      {
+        path:"dashboard",
+        element:(
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        )
+      }
     ]
   }
 ])

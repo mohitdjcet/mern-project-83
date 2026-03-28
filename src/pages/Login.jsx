@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router";
+import {login} from "../utils/auth"
 
-export default function Login(){
-    const navigate = useNavigate();
+function Login() {
+  const navigate = useNavigate();
 
-    const handlClick = ()=>{
-        navigate("/users/1")
-    }
-
-    return(
-        <div>
-            <h2>Login Page</h2>
-            <button onClick={handlClick}>Login and Go to users Page</button>
-        </div>
-    )
+  const handleClick = () =>{
+    login()
+    navigate("/dashboard")
+  }
+  return (
+    <>
+      <h1>Login Page</h1>
+      <button onClick={handleClick}>Login</button>
+    </>
+  );
 }
+
+export default Login;
