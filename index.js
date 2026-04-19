@@ -1,28 +1,22 @@
-import fs from "fs/promises";
+// import fs from "fs/promises";
+const fs = require("fs")
 
-// console.log("Start");
 
-// // fs.readFile("data.txt","utf8",(err,data)=>{
-// //     if(err){
-// //         console.log("Error", err);
-// //         return;
-// //     }
-// //     console.log("File Content:");
-// //     console.log(data);
-// // });
+// fs.writeFile("data.txt","Mohit Kumar",(err)=>{
+//     if(err){
+//         console.log("Error");
+//         return;
+//     }
+//     console.log("File Created successfully");
+// })
 
-// const data = fs.readFileSync("data.txt","utf8")
-// console.log(data);
+// fs.appendFile("data.txt","\nNew Line Added")
+// console.log("Data Append is working fine")
 
-// console.log("End");
-
-async function readData(){
-    try{
-        const data = await fs.readFile("data.txt","utf8");
-        console.log("File Content:");
-        console.log(data);
-    } catch(err){
-        console.log("Error", err.message);
+fs.unlink("data.txt",(err)=>{
+    if(err){
+        console.log("File not found");
+        return;
     }
-}
-readData();
+    console.log("File deleted successfully");
+})
