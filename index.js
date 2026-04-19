@@ -1,9 +1,28 @@
-// const http = require('http');
-import http from 'http';
+import fs from "fs/promises";
 
-const server = http.createServer((req, res) => {
-    res.write("Hello World");
-    res.end();
-});
+// console.log("Start");
 
-server.listen(3002);
+// // fs.readFile("data.txt","utf8",(err,data)=>{
+// //     if(err){
+// //         console.log("Error", err);
+// //         return;
+// //     }
+// //     console.log("File Content:");
+// //     console.log(data);
+// // });
+
+// const data = fs.readFileSync("data.txt","utf8")
+// console.log(data);
+
+// console.log("End");
+
+async function readData(){
+    try{
+        const data = await fs.readFile("data.txt","utf8");
+        console.log("File Content:");
+        console.log(data);
+    } catch(err){
+        console.log("Error", err.message);
+    }
+}
+readData();
