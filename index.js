@@ -1,26 +1,14 @@
-const path = require("path")
-const fs = require("fs")
+//HTTP Module
+// const http = require("http");
+import http from "http";
 
-const file = "/Users/mohitkumar/Desktop/MERN-83/mern-83"
-console.log(path.basename(file));
-console.log(path.extname("data.txt"));
+const server = http.createServer((req,res)=>{
+    res.writeHead(200,{
+        "content-type":"text/HTML"
+    })
+    res.end(`<h1>Mohit Kumar</h1>`);
+});
 
-const fullPath = path.resolve("file","data.txt")
-console.log(fullPath);
-
-
-// const filePath = path.join(__dirname,"data.txt");
-
-// console.log(filePath);
-
-// fs.readFile(filePath,"utf8",(err,data)=>{
-//     if(err){
-//         console.log("Err");
-//         return;
-//     }
-//     console.log(data);
-    
-// })
-
-// const filePath = new URL("./data.txt", import.meta.url);
-// console.log(filePath.pathname);
+server.listen(3005,()=>{
+    console.log("Server is running on port 3005");
+})
