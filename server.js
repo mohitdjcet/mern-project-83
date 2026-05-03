@@ -1,33 +1,37 @@
-import express from 'express';
+import express from "express"
 
 const app = express();
-const PORT = 3005;
-//Middleware
-app.use(express.json())
 
-//Home Route
-app.get("/",(req,res)=>{
-    res.send("Home Page")
+app.use(express.json());
+
+app.get("/", (req,res)=>{
+    res.send("Welcome to Home Page")
 })
 
-//POST API Route
-app.post("/data",(req,res)=>{
-    const userData = req.body;
+app.get("/users", (req,res)=>{
+    console.log("Users API hit");
+    const users = {
+        "name" :"Mohit",
+        "age":24
+    };
+    res.json(users)
+})
+
+app.get("/user/search",(req,res)=>{
+    const price = req.query.price;
+
+    res.send(`Search for ${price}`)
+})
+
+app.post("/add-user",(req,res)=>{
+    const user = req.body;
 
     res.json({
-        message:"Data Received",
-        data:userData
+        message: "User Added Fine",
+        user: user
     })
 })
 
-app.get("/about",(req,res)=>{
-    res.send("About Page")
+app.listen(3005,()=>{
+    console.log("Server is Running on port 3005");
 })
-
-app.get("/contact",(req,res)=>{
-    res.send("Contactus Page")
-})
-
-app.listen(PORT,()=>{
-    console.log("Start at 3005 PORT");
-});
