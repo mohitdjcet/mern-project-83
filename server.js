@@ -1,65 +1,26 @@
-import express from "express";
+import express from 'express';
 
 const app = express();
 
-app.use(express.json());
+app.use("/", express.static("public"))
 
-let users = [
-  {
-    id: 12345,
-    name: "Mohit",
-  },
-  {
-    id: 12346,
-    name: "Vipin",
-  },
-];
+app.listen(3005)
 
-app.get("/users", (req, res) => {
-  res.json({
-    data: users,
-  });
-});
+// const logger = (req,res,next) =>{
+//   console.log(`${req.method} ${req.url}`);
+//   next();
+// }
 
-app.put("/update-user/:id", (req, res) => {
-  const userId = parseInt(req.params.id);
-  const newName = req.body.name;
-  console.log(userId);
+// app.use(logger);
+// app.use(express.json());
+// app.use(express.urlencoded({extended:true}));
 
-  const user = users.find((u) => u.id === userId);
+// app.get("/",(req,res)=>{
+//   res.send("Home Page")
+// })
 
-  if (user) {
-    user.name = newName;
-    res.json({
-      message: "User Upadated fine",
-      users,
-    });
-  } else {
-    res.status(404).json({
-      message: "User Not Found",
-    });
-  }
-});
+// app.post("/form",(req,res)=>{
+//   res.json(req.body)
+// })
 
-app.delete("/delete-user/:id", (req, res) => {
-  const userId = parseInt(req.params.id);
-
-  const newUsers = users.filter((u) => u.id !== userId);
-
-  if (newUsers.length !== users.length) {
-    users = newUsers;
-
-    res.json({
-      message: "User Deleted",
-      users,
-    });
-  } else {
-    res.status(404).json({
-      message: "User Not Found",
-    });
-  }
-});
-
-app.listen(3005, () => {
-  console.log("Server is Running on port 3005");
-});
+// app.listen(3005)
